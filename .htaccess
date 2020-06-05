@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteRule ^sitemap\.xml?$ sitemap.php
+
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteRule ^([^/]*)(.*)$ index.php?url=$1&res=$2 [L,QSA]
+
+</IfModule>
