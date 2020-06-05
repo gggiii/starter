@@ -13,9 +13,19 @@
         <meta name="description" content="<?php echo $app->theme->description()?>">
         <meta name="keywords" content="<?php echo $app->theme->keywords()?>">
         <meta name="author" content="<?php echo $app->theme->author()?>">
+        <link rel="icon" type="image/png" href="favicon.ico">
+
+        <!--
+                BOOTSTRAP
+        -->
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/bootstrap/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/bootstrap/css/bootstrap-reboot.min.css">
+
         <!--
                 STYLES
         -->
+        <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/flickity.css">
         <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/style.css">
     </head>
     <body>

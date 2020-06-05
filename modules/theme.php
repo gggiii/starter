@@ -28,7 +28,7 @@
             return $this->title;
         }
         public function lang(){
-            return $this->title;
+            return $this->lang;
         }
         public function charset(){
             return $this->charset;
