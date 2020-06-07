@@ -10,6 +10,10 @@
     include('app.class.php');
     global $app;
     $app = new App();
+    
+    //CREATE STATS RECORD
+    $app->stats->record();
+
     //PARSE FIRST URL ARGUMENT - PAGE
     if(isset($_GET['url'])){
         define("PAGE", $_GET['url']);

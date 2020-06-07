@@ -1,7 +1,13 @@
 <?php
     $app->theme->head();
 ?>
-<h1>HOME</h1>
+
+   <pre>
+    <?php 
+        print_r($app->stats->get());
+    ?>
+   </pre>
+
 <?php
     $app->theme->footer();
 ?>

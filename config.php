@@ -1,5 +1,10 @@
 <?php
+    //HTTPS REROUTE
+    if(!is_https()){
+        //header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+    }
 
+    //BASE URL SETUP
     define('IP',$_SERVER['REMOTE_ADDR']);
     if(IP == '127.0.0.1' or IP == '::1'){
         define('LOCALHOST', true);

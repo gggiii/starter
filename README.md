@@ -1,2 +1,2 @@
-# starter
+# Starter
 Website starting template
