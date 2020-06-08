@@ -27,5 +27,14 @@
         -->
         <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/flickity.css">
         <link rel="stylesheet" href="<?php echo BASE_URL?>assets/css/style.css">
+        <!--
+                Dynamic STYLE BY PAGE
+        -->
+        <?php
+                $styleUrl = BASE_URL.'assets/css/'.PAGE.'.css';
+                if(file_get_contents($styleUrl)){
+                        echo '<link rel="stylesheet" href="'.$styleUrl.'">';
+                }    
+        ?>
     </head>
     <body>
