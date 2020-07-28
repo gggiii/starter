@@ -12,9 +12,9 @@
         define('LOCALHOST', false);
     }
     if(LOCALHOST){
-        define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST']."/starter/");
+        define('ROOT_URL', 'http://'.$_SERVER['HTTP_HOST']."/starter/");
     }else{
-        define('BASE_URL', 'http:/google.com/');
+        define('ROOT_URL', 'http:/google.com/');
     }
 
     //CHECK IF COONECTION IS HTTPS
@@ -35,6 +35,6 @@
     define('DB_PORT','3306');
     define('DB_USERNAME','root');
     define('DB_PASSWORD','');
-    define('DB_DATABASE', 'testea');
+    define('DB_DATABASE', 'test');
 
 ?>

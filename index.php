@@ -1,40 +1,52 @@
 <?php
-    //INCLUDE CONFIG
-    include('config.php');
+error_reporting(E_ERROR);
+//INCLUDE CONFIG
+include('config.php');
 
-    //INCLUDE DATABASE
-    include('database.class.php');
-    $db = new db(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_DATABASE,DB_PORT);
+//INCLUDE DATABASE
+include('database.class.php');
+$db = new db(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_PORT);
 
-    //INCLUDE APP
-    include('app.class.php');
-    global $app;
-    $app = new App();
-    
-    //CREATE STATS RECORD
-    $app->stats->record();
+//INCLUDE APP
+include('app.class.php');
+$app = new App($db);
 
-    //PARSE FIRST URL ARGUMENT - PAGE
-    if(isset($_GET['url'])){
-        define("PAGE", $_GET['url']);
-    }else{
-        define("PAGE", 'home');     //DEFAULT PAGE
+//PARSE URL 
+if (isset($_GET['url'])) {
+    $url = explode('/', $_GET['url']);
+
+    if ($url[0] == $app->language) {  //1st parameter is default language
+        array_shift($url);
+        header('Location: ' . ROOT_URL . implode('/', $url));   //route to location without language parameter
+    } else if ($url == $app->setLanguage($url[0])) {    //1st parameter is a language
+        if (isset($url[1])) {
+            define('PAGE', $url[1]);
+            array_shift($url);
+            array_shift($url);
+            if (count($url) > 0) {        //parameters exist
+                define('PARAMETERS', $url);
+            }
+        } else {
+            define('PAGE', 'home');
+            define("PARAMETERS", array());
+        }
+        define("BASE_URL", ROOT_URL.$app->language.'/');
+    } else {
+        define('PAGE', $url[0]);    //evaluate 1st perameter as PAGE
+        define("BASE_URL", ROOT_URL.$app->language.'/');
+        array_shift($url);
+        if (count($url) > 0) {        //parameters left
+            define('PARAMETERS', $url);
+        }
     }
-
-    //PARSE URL ARGUMENTS
-    if(isset($_GET['res'])){
-        $res = explode('/',$_GET['res']);
-        array_shift($res);
-        define("PARAMETERS", $res);
-    }else{
-        define("PARAMETERS",null);
-    }
-    
-    //LOAD PAGE TEMPLATES
-    if(file_exists(PAGE_TEMPLATES_DIR.PAGE.'.php')){
-        include(PAGE_TEMPLATES_DIR.PAGE.'.php');
-    }else{
-        include(PAGE_TEMPLATES_DIR.PAGE_404);
-    }
-
-?>
+} else {      
+    define('PAGE', 'home'); //default page in default language --|
+    define("PARAMETERS", array());
+    define("BASE_URL", ROOT_URL);
+}
+//LOAD PAGE TEMPLATES
+if (file_exists(PAGE_TEMPLATES_DIR . $app->language . '/' . PAGE . '.php')) {
+    include(PAGE_TEMPLATES_DIR . $app->language . '/' . PAGE . '.php');
+} else {
+    include(PAGE_TEMPLATES_DIR . $app->language . '/' . PAGE_404);
+}

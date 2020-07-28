@@ -1,8 +1,6 @@
 <?php
     class Stats{
-        public function __construct($db) {
-            $this->db = $db;
-
+        public function __construct() {
             $this->track = false;
 
             $this->cookiename = 'usercookie';

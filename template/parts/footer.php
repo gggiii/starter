@@ -1,40 +1,31 @@
         <!--
-                BOOTSTRAP
+                DEFAULT CSS LOADED ASYNCHRONOUSLY
         -->
-        <script src="<?php BASE_URL?>assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="<?php BASE_URL?>assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!--
-                CONDITIONAL HAMMER.JS INCLUDE
-        -->
-        <?php
-            if(PAGE == 'x'):
-        ?>
-            <script src="<?php BASE_URL?>assets/js/hammer.js"></script>
-        <?php
-            endif;
-        ?>
+        <link rel="preload" as="style" onload="this.rel='stylesheet'" href="<?php echo ROOT_URL ?>assets/css/main.css">
+
 
         <!--
-                CONDITIONAL FLICKITY INCLUDE
+                DEFAULT JAVASCRIPT
         -->
-        <?php
-            if(PAGE == 'x'):
-        ?>
-            <script src="<?php BASE_URL?>assets/js/flickity.js"></script>
-        <?php
-            endif;
-        ?>
+        <script defer src="<?php echo ROOT_URL ?>assets/js/main.js"></script>
+        
 
-        <script src="<?php BASE_URL?>assets/js/main.js"></script>
+        <?php
+        $styleUrl = ROOT_URL . 'assets/css/' . PAGE . '.css';
+            if ( fopen($styleUrl, "r")) {
+                echo '<link rel="preload" as="style" onload="this.rel=\'stylesheet\'" href="' . $styleUrl . '">';
+            }
+        ?>
 
         <!--
                 DYNAMICSCRIPT INCLUDE BY PAGE
         -->
         <?php
-            $scriptUrl = BASE_URL.'assets/css/'.PAGE.'.js';
-            if(file_get_contents($scriptUrl)){
-                    echo ' <script src="'.$scriptUrl.'"></script>';
-            }  
+        $scriptUrl = ROOT_URL . 'assets/js/' . PAGE . '.js';
+        if (file_exists($scriptUrl)) {
+            echo ' <script async src="' . $scriptUrl . '"></script>';
+        }
         ?>
-    </body>
-</html>
+        </body>
+
+        </html>

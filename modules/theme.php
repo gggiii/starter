@@ -1,8 +1,6 @@
 <?php
     class Theme{
-        public function __construct($db){   
-            //MANDATORY DB INCLUDE FOR EACH MODULE CLASS
-            $this->db = $db;
+        public function __construct(){   
 
             //DEFAULT META VALUES
             $this->title = 'Title';
