@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ERROR);
 //INCLUDE CONFIG
 include('config.php');
 
@@ -17,7 +16,8 @@ if (isset($_GET['url'])) {
 
     if ($url[0] == $app->language) {  //1st parameter is default language
         array_shift($url);
-        header('Location: ' . ROOT_URL . implode('/', $url));   //route to location without language parameter
+        header('Location:' . ROOT_URL . implode('/', $url));   //route to location without language parameter
+        exit();
     } else if ($url == $app->setLanguage($url[0])) {    //1st parameter is a language
         if (isset($url[1])) {
             define('PAGE', $url[1]);
@@ -40,7 +40,7 @@ if (isset($_GET['url'])) {
         }
     }
 } else {      
-    define('PAGE', 'home'); //default page in default language --|
+    define('PAGE', 'home'); //default page
     define("PARAMETERS", array());
     define("BASE_URL", ROOT_URL);
 }
@@ -48,5 +48,6 @@ if (isset($_GET['url'])) {
 if (file_exists(PAGE_TEMPLATES_DIR . $app->language . '/' . PAGE . '.php')) {
     include(PAGE_TEMPLATES_DIR . $app->language . '/' . PAGE . '.php');
 } else {
+    header("HTTP/1.0 404 Not Found");
     include(PAGE_TEMPLATES_DIR . $app->language . '/' . PAGE_404);
 }
