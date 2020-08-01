@@ -2,7 +2,8 @@
     $app->theme->head();
 ?>
 
-   hello
+  home
+    
 
 <?php
     $app->theme->footer();

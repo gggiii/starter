@@ -5,8 +5,8 @@
         private $languages;
         public function __construct($db) {
 
-            $this->language= 'sk';
-            $this->languages = array('sk','en');
+            $this->language= 'en';
+            $this->languages = array('en','sk');
             
             
             

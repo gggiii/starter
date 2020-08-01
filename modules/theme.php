@@ -4,7 +4,6 @@
 
             //DEFAULT META VALUES
             $this->title = 'Title';
-            $this->lang = 'en';
             $this->charset = 'UTF-8';
             $this->description = 'The best website';
             $this->keywords = 'Website, Besst, Top';
@@ -24,9 +23,6 @@
         public function title(){
             
             return $this->title;
-        }
-        public function lang(){
-            return $this->lang;
         }
         public function charset(){
             return $this->charset;

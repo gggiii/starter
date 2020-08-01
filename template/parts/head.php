@@ -2,7 +2,7 @@
 global $app;
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $app->theme->lang() ?>">
+<html lang="<?php echo $app->language ?>">
 
 <head>
     <title><?php echo $app->theme->title() ?></title>
